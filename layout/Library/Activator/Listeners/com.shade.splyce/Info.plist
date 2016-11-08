@@ -1,0 +1,7 @@
+{
+	title = "Splyce";
+	description = "Close background apps, the smart way";
+	group = "System Actions";
+	"needs-powered-display" = 0;
+	"exclusive-assignment-groups" = ();
+}

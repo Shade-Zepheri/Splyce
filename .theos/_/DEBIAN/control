@@ -1,0 +1,10 @@
+Package: com.shade.splyce
+Name: Splyce
+Depends: mobilesubstrate, libactivator, preferenceloader, applist
+Architecture: iphoneos-arm
+Description: SmartClose for iOS 9
+Maintainer: Shade Zepheri
+Author: Shade Zepheri
+Section: Tweaks
+Version: 0.0.1-3+debug
+Installed-Size: 164
