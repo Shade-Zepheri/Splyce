@@ -28,7 +28,7 @@
 		Boolean exists = false;
 		Boolean clearSwitcher = CFPreferencesGetAppBooleanValue(CFSTR("SCClearSwitcher"), CFSTR("com.shade.splyce"), &exists);
 		if (!exists || clearSwitcher) {
-			[process2 killForReason:1 andReport:NO withDescription:@"Get Splyced" completion:nil];
+			[process2 killForReason:1 andReport:NO withDescription:@"Get Splyced"];
 		}
 		//SBUIController *uic = (SBUIController *)[%c(SBUIController) sharedInstance];
 		//[uic dismissSwitcherAnimated:YES];
