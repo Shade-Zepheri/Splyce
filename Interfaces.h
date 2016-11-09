@@ -32,6 +32,33 @@
 - (void)notifyResumeActiveForReason:(long long)arg1;
 @end
 
+@interface SBDisplayItem : NSObject {
+
+	NSString* _uniqueStringRepresentation;
+	NSString* _type;
+	NSString* _displayIdentifier;
+
+}
+
+@property (nonatomic,copy,readonly) NSString * type;                           //@synthesize type=_type - In the implementation block
+@property (nonatomic,copy,readonly) NSString * displayIdentifier;              //@synthesize displayIdentifier=_displayIdentifier - In the implementation block
++(id)displayItemWithType:(NSString*)arg1 displayIdentifier:(id)arg2 ;
++(id)homeScreenDisplayItem;
++(id)sideSwitcherDisplayItem;
+-(id)initWithType:(NSString*)arg1 displayIdentifier:(id)arg2 ;
+-(id)uniqueStringRepresentation;
+-(id)_calculateUniqueStringRepresentation;
+-(BOOL)isHomeScreenDisplayItem;
+-(BOOL)isSideSwitcherDisplayItem;
+-(id)init;
+-(BOOL)isEqual:(id)arg1 ;
+-(unsigned long long)hash;
+-(id)description;
+-(NSString *)displayIdentifier;
+-(NSString *)type;
+-(id)copyWithZone:(NSZone*)arg1 ;
+@end
+
 @interface SBAppSwitcherModel : NSObject
 + (id)sharedInstance;
 - (id)snapshotOfFlattenedArrayOfAppIdentifiersWhichIsOnlyTemporary;

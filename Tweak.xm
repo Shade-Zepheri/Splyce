@@ -24,11 +24,12 @@
 	event.handled = YES;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		CFPreferencesAppSynchronize(CFSTR("com.shade.splyce"));
-		FBApplicationProcess *process2 = [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses];
 		Boolean exists = false;
 		Boolean clearSwitcher = CFPreferencesGetAppBooleanValue(CFSTR("SCClearSwitcher"), CFSTR("com.shade.splyce"), &exists);
 		if (!exists || clearSwitcher) {
-			[process2 killForReason:1 andReport:NO withDescription:@"Get Splyced"];
+			SBDisplayItem *item = [%c(SBDisplayItem) displayItemWithType:@"App" displayIdentifier:ident];
+	    id appSwitcherModel = [%c(SBAppSwitcherModel) sharedInstance];
+	        [[%c(SBAppSwitcherModel) sharedInstance] remove:item];
 		}
 		//SBUIController *uic = (SBUIController *)[%c(SBUIController) sharedInstance];
 		//[uic dismissSwitcherAnimated:YES];
