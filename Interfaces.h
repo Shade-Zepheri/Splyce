@@ -9,6 +9,57 @@
 @property (nonatomic, retain, readonly) id _accessibilityFrontMostApplication;
 @end
 
+@interface SBSyncController : NSObject {
+
+	int _restoreState;
+	int _resetState;
+	int _restoreTimerState;
+	NSTimer* _restoreTimer;
+	NSTimer* _progressTimer;
+	BOOL _showingResetUI;
+	BOOL _appsChangedDuringSync;
+	int _restoreStartedNotifyToken;
+	int _restoreEndedNotifyToken;
+	BOOL _isAppSyncing;
+	BOOL _inExtendedAppSyncCoalescePeriod;
+
+}
++(id)sharedInstance;
+-(BOOL)isResetting;
+-(void)finishedTerminatingApplications;
+-(void)beginRestoring;
+-(void)_didEndRestoring:(int)arg1 ;
+-(void)_resetStarted:(id)arg1 ;
+-(void)_resetEnded:(id)arg1 ;
+-(void)_wirelessSyncEnded:(id)arg1 ;
+-(void)_wirelessSyncBegan:(id)arg1 ;
+-(void)_appInstallationNotification;
+-(void)_notifyRestoreCanProceed;
+-(void)_setupRestoreTimer;
+-(void)_killApplications;
+-(void)_delayedBeginReset;
+-(void)_syncSessionDidBegin;
+-(void)_syncSessionDidEnd;
+-(void)_didEndResetting;
+-(void)_rebootNow;
+-(void)_invalidateRestoreTimer;
+-(void)_finishEndRestoring;
+-(void)_delayedQuitApplications;
+-(BOOL)_isBackupAgentRunning;
+-(void)_restoreTimerFired:(id)arg1 ;
+-(void)cancelRestoring;
+-(void)beginResetting:(BOOL)arg1 ;
+-(void)dealloc;
+-(void)_updateProgress;
+-(void)startObserving;
+-(BOOL)isRestoring;
+-(int)resetState;
+-(int)restoreState;
+-(void)_setRestoreState:(int)arg1 ;
+-(void)stopObserving;
+-(BOOL)isInUse;
+@end
+
 @interface FBApplicationProcess : NSObject
 @property (assign,getter=isRecordingAudio,nonatomic) BOOL recordingAudio;                                                         //@synthesize recordingAudio=_recordingAudio - In the implementation block
 @property (assign,getter=isNowPlayingWithAudio,nonatomic) BOOL nowPlayingWithAudio;
