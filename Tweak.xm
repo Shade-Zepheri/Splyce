@@ -27,7 +27,10 @@
 		Boolean exists = false;
 		Boolean clearSwitcher = CFPreferencesGetAppBooleanValue(CFSTR("SCClearSwitcher"), CFSTR("com.shade.splyce"), &exists);
 		if (!exists || clearSwitcher) {
-			//Kill all apps will go here
+			for (FBProcess *process in [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses]) {
+				SBDisplayItem *item = [%c(SBDisplayItem) displayItemWithType:@"App" displayIdentifier:process.bundleIdentifier];
+				[[%c(SBAppSwitcherModel) sharedInstance] remove:item];
+			}
 		}
 		FBApplicationProcess *currentProcess = [(SpringBoard*)[UIApplication sharedApplication] _accessibilityFrontMostApplication];
 		for (FBApplicationProcess *process in [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses]) {

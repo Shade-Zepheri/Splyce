@@ -19,6 +19,30 @@
 - (void)processWillExpire:(id)arg1;
 @end
 
+@interface FBProcess : NSObject {
+	NSString* _name;
+	NSString* _jobLabel;
+	NSString* _bundleIdentifier;
+}
+
+@property (nonatomic,copy,readonly) NSString * name;
+@property (nonatomic,copy,readonly) NSString * jobLabel;
+@property (nonatomic,copy,readonly) NSString * bundleIdentifier;
+@property (copy,readonly) NSString * description;
+@property (copy,readonly) NSString * debugDescription;
+-(void)dealloc;
+-(NSString *)description;
+-(NSString *)debugDescription;
+-(NSString *)name;
+-(NSString *)bundleIdentifier;
+-(BOOL)isRunning;
+-(BOOL)isForeground;
+-(BOOL)isApplicationProcess;
+-(BOOL)isExtensionProcess;
+-(BOOL)isSystemApplicationProcess;
+-(NSString *)jobLabel;
+@end
+
 @interface SBApplication ()
 -(void) clearDeactivationSettings;
 -(id) mainScreenContextHostManager;
@@ -75,7 +99,7 @@
 - (id)commandTabDisplayItems;
 - (id)displayItemsForAppsOfRoles:(id)arg1;
 - (id)mainSwitcherDisplayItems;
-//- (void)remove:(id)arg1;
+- (void)remove:(id)arg1;
 - (void)addToFront:(id)arg1 role:(long long)arg2;
 - (void)_warmUpIconForDisplayItem:(id)arg1;
 - (void)_warmUpRecentIcons;
