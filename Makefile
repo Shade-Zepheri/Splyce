@@ -4,7 +4,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = Splyce
 Splyce_FILES = Tweak.xm
-Splyce_LIBRARIES = activator applist
+Splyce_LIBRARIES = activator
 Splyce_FRAMEWORKS = UIKit CoreGraphics
 Splyce_PRIVATE_FRAMEWORKS = AssertionServices FrontBoard
 Splyce_CFLAGS = -fobjc-arc
