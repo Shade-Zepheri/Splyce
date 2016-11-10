@@ -27,12 +27,8 @@
 		Boolean exists = false;
 		Boolean clearSwitcher = CFPreferencesGetAppBooleanValue(CFSTR("SCClearSwitcher"), CFSTR("com.shade.splyce"), &exists);
 		if (!exists || clearSwitcher) {
-			SBDisplayItem *item = [%c(SBDisplayItem) displayItemWithType:@"App" displayIdentifier:ident];
-	    id appSwitcherModel = [%c(SBAppSwitcherModel) sharedInstance];
-	        [[%c(SBAppSwitcherModel) sharedInstance] remove:item];
+			//Kill all apps will go here
 		}
-		//SBUIController *uic = (SBUIController *)[%c(SBUIController) sharedInstance];
-		//[uic dismissSwitcherAnimated:YES];
 		FBApplicationProcess *currentProcess = [(SpringBoard*)[UIApplication sharedApplication] _accessibilityFrontMostApplication];
 		for (FBApplicationProcess *process in [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses]) {
 			if (!process.nowPlayingWithAudio && !process.recordingAudio && (process != currentProcess)) {

@@ -60,6 +60,7 @@
 @end
 
 @interface SBAppSwitcherModel : NSObject
+-(id)mainSwitcherDisplayItems;
 + (id)sharedInstance;
 - (id)snapshotOfFlattenedArrayOfAppIdentifiersWhichIsOnlyTemporary;
 - (id)snapshot;
