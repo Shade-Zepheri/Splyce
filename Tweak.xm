@@ -6,16 +6,10 @@
 @implementation Splyce
 
 + (void)load{
-	@autoreleasepool{
+	@autoreleasepool {
 		if (LASharedActivator.runningInsideSpringBoard) {
 			Splyce *listener = [[self alloc] init];
 			[LASharedActivator registerListener:listener forName:@"com.shade.splyce"];
-		}
-		Boolean exists = false;
-		CFPreferencesGetAppBooleanValue(CFSTR("SCAppEnabled-com.apple.mobilemail"), CFSTR("com.shade.splyce"), &exists);
-		if (!exists) {
-			CFPreferencesSetAppValue(CFSTR("SCAppEnabled-com.apple.mobilemail"), kCFBooleanTrue, CFSTR("com.shade.splyce"));
-			CFPreferencesAppSynchronize(CFSTR("com.shade.splyce"));
 		}
 	}
 }
@@ -23,15 +17,8 @@
 - (void)activator:(LAActivator *)activator receiveEvent:(LAEvent *)event{
 	event.handled = YES;
 	dispatch_async(dispatch_get_main_queue(), ^{
-		CFPreferencesAppSynchronize(CFSTR("com.shade.splyce"));
-		Boolean exists = false;
-		Boolean clearSwitcher = CFPreferencesGetAppBooleanValue(CFSTR("SCClearSwitcher"), CFSTR("com.shade.splyce"), &exists);
-		if (!exists || clearSwitcher) {
-			[[%c(SBSyncController) sharedInstance] _killApplications];
-		}
-		FBApplicationProcess *currentProcess = [(SpringBoard*)[UIApplication sharedApplication] _accessibilityFrontMostApplication];
 		for (FBApplicationProcess *process in [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses]) {
-			if (!process.nowPlayingWithAudio && !process.recordingAudio && (process != currentProcess)) {
+			if (!process.nowPlayingWithAudio && !process.recordingAudio) {
 				BKSProcess *bkProcess = MSHookIvar<BKSProcess*>(process, "_bksProcess");
 				if (bkProcess) {
 					[process processWillExpire:bkProcess];

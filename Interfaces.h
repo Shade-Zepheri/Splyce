@@ -179,7 +179,7 @@
 - (id)processForPID:(int)arg1;
 - (id)applicationProcessesForBundleIdentifier:(id)arg1;
 - (id)processesForBundleIdentifier:(id)arg1;
-- (id)allApplicationProcesses;
+- (NSArray *)allApplicationProcesses;
 - (id)allProcesses;
 @end
 
