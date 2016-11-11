@@ -37,21 +37,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>Apps will be killed</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>defaults</key>
-			<string>com.shade.splyce</string>
-			<key>key</key>
-			<string>SCClearSwitcher</string>
-			<key>label</key>
-			<string>Clear Switcher</string>
-			<key>PostNotification</key>
-			<string>com.shade.splyce.settings-changed</string>
+			<string>Welp Nothing Else to put ¯\_(ツ)_/¯</string>
 		</dict>
 	</array>
 </dict>
