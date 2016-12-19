@@ -5,6 +5,18 @@
 #import <Foundation/Foundation.h>
 #import <SpringBoard/SBApplication.h>
 
+@interface UIApplication (Private)
+- (void)_relaunchSpringBoardNow;
+- (id)_accessibilityFrontMostApplication;
+- (void)launchApplicationWithIdentifier: (NSString*)identifier suspended: (BOOL)suspended;
+- (id)displayIdentifier;
+- (void)setStatusBarHidden:(bool)arg1 animated:(bool)arg2;
+- (void)_updateForcedStatusBarStyle;
+void receivedStatusBarChange(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo);
+void receivedLandscapeRotate();
+void receivedPortraitRotate();
+@end
+
 @interface SpringBoard : UIApplication
 @property (nonatomic, retain, readonly) id _accessibilityFrontMostApplication;
 @end

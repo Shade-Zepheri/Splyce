@@ -37,7 +37,25 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>Welp Nothing Else to put ¯\_(ツ)_/¯</string>
+			<string>Enabled apps will be put into deep sleep</string>
+		</dict>
+		<dict>
+			<key>bundle</key>
+			<string>AppList</string>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>Enabled Applications</string>
+			<key>ALSettingsPath</key>
+			<string>/var/mobile/Library/Preferences/com.shade.splyce.plist</string>
+			<key>ALSettingsKeyPrefix</key>
+			<string>SLAppEnabled-</string>
+			<key>ALChangeNotification</key>
+			<string>com.shade.splyce/ReloadPrefs</string>
+			<key>ALSettingsDefaultValue</key>
+			<true/>
 		</dict>
 	</array>
 </dict>

@@ -1,13 +1,12 @@
-TARGET = iphone:clang:9.3:9.3
+TARGET = iphone:9.2
 
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = Splyce
 Splyce_FILES = Tweak.xm
 Splyce_LIBRARIES = activator
-Splyce_FRAMEWORKS = UIKit CoreGraphics
-Splyce_PRIVATE_FRAMEWORKS = AssertionServices FrontBoard
-Splyce_CFLAGS = -fobjc-arc
+Splyce_FRAMEWORKS = UIKit
+Splyce_CFLAGS = -fobjc-arc -O2
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
