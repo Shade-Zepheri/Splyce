@@ -1,9 +1,9 @@
 Package: com.shade.splyce
 Name: Splyce
 Depends: mobilesubstrate, libactivator, preferenceloader, applist
-Version: 0.7
+Version: 0.8
 Architecture: iphoneos-arm
-Description: SmartClose for iOS 9
+Description: SmartClose for iOS 9, If you see this then my depictions are probably broken as Im prettifying them, v 0.8 adds app exemptions. This is last beta for sure. 
 Maintainer: Shade Zepheri
 Author: Shade Zepheri
 Section: Tweaks
