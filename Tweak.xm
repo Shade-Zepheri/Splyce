@@ -25,16 +25,13 @@
 	event.handled = YES;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		CFPreferencesAppSynchronize(CFSTR("com.shade.splyce"));
-		for (FBProcess *process in [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses]) {
-			NSString *appBundle = [NSString stringWithFormat:@"SLAppEnabled-%@", process.bundleIdentifier];
-			CFStringRef cfAppBundle = (__bridge CFStringRef)appBundle;
-			BOOL enabled = [(__bridge id)CFPreferencesCopyAppValue(cfAppBundle, CFSTR("com.shade.splyce")) boolValue];
+		for (FBApplicationProcess *process in [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses]) {
+			BOOL enabled = [(__bridge id)CFPreferencesCopyAppValue((__bridge CFStringRef)[NSString stringWithFormat:@"SLAppEnabled-%@", process.bundleIdentifier], CFSTR("com.shade.splyce")) boolValue];
 			if (enabled) {
-				FBApplicationProcess *appProcess = (FBApplicationProcess *)process;
-				if (!appProcess.nowPlayingWithAudio && !appProcess.recordingAudio) {
-					BKSProcess *bkProcess = MSHookIvar<BKSProcess*>(appProcess, "_bksProcess");
+				if (!process.nowPlayingWithAudio && !process.recordingAudio) {
+					BKSProcess *bkProcess = MSHookIvar<BKSProcess*>(process, "_bksProcess");
 					if (bkProcess) {
-						[appProcess processWillExpire:bkProcess];
+						[process processWillExpire:bkProcess];
 					}
 				}
 			}
