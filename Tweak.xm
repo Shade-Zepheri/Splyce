@@ -1,5 +1,4 @@
 #import "Interfaces.h"
-#import <notify.h>
 
 @interface Splyce : NSObject <LAListener>
 @end
@@ -26,8 +25,10 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		CFPreferencesAppSynchronize(CFSTR("com.shade.splyce"));
 		for (FBApplicationProcess *process in [(FBProcessManager *)[%c(FBProcessManager) sharedInstance] allApplicationProcesses]) {
-			BOOL enabled = [(__bridge id)CFPreferencesCopyAppValue((__bridge CFStringRef)[NSString stringWithFormat:@"SLAppEnabled-%@", process.bundleIdentifier], CFSTR("com.shade.splyce")) boolValue];
+			CFStringRef enabledKey = (__bridge CFStringRef)[NSString stringWithFormat:@"SLAppEnabled-%@", process.bundleIdentifier];
+			BOOL enabled = !CFPreferencesCopyAppValue(enabledKey, CFSTR("com.shade.splyce")) ? YES : [(__bridge id)CFPreferencesCopyAppValue(enabledKey, CFSTR("com.shade.splyce")) boolValue];
 			if (enabled) {
+				HBLogDebug(@"%@ is enabled", process.bundleIdentifier);
 				if (!process.nowPlayingWithAudio && !process.recordingAudio) {
 					BKSProcess *bkProcess = MSHookIvar<BKSProcess*>(process, "_bksProcess");
 					if (bkProcess) {
