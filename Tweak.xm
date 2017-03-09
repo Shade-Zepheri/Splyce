@@ -28,7 +28,6 @@
 			CFStringRef enabledKey = (__bridge CFStringRef)[NSString stringWithFormat:@"SLAppEnabled-%@", process.bundleIdentifier];
 			BOOL enabled = !CFPreferencesCopyAppValue(enabledKey, CFSTR("com.shade.splyce")) ? YES : [(__bridge id)CFPreferencesCopyAppValue(enabledKey, CFSTR("com.shade.splyce")) boolValue];
 			if (enabled) {
-				HBLogDebug(@"%@ is enabled", process.bundleIdentifier);
 				if (!process.nowPlayingWithAudio && !process.recordingAudio) {
 					BKSProcess *bkProcess = MSHookIvar<BKSProcess*>(process, "_bksProcess");
 					if (bkProcess) {
